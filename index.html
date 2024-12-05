@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevLearn Hub - LinkedIn Focus</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        section {
+            scroll-margin-top: 50px;
+        }
+
+        #about,
+        #highlights,
+        #journey,
+        #series {
+            scroll-margin-top: 50px;
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            /* Background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .preloader-content h1 {
+
+            margin-top: 20px;
+            color: black;
+            /* Text color */
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: zoomAndFade 3s ease-in;
+            text-shadow: 2px 1px 2px rgba(53, 53, 53, 0.7);
+        }
+
+        .preloader-content img {
+            width: 100px;
+            /* Adjust size as needed */
+            height: auto;
+        }
+
+        nav {
+            background: #343a40;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            color: #0077b5;
+        }
+
+        .nav-link {
+            color: white;
+            justify-content: space-between;
+
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #0077b5;
+        }
+
+        #navbarNav li a {
+            padding: 5px 10px;
+            font-size: 18px;
+            padding: 5px 10px;
+        }
+
+        .nav-link.btn.btn-primary {
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .nav-link.btn.btn-primary:hover {
+            background-color: #0077b5 !important;
+        }
+
+        .nav-link.btn.btn-primary:active {
+            transform: scale(0.95);
+        }
+
+        .hero {
+            background: linear-gradient(to right, #0077b5, #005083);
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .btn-light {
+            position: relative;
+            background-color: #ffffff;
+            color: #0077b5;
+            border: 2px solid #0077b5;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .btn-light::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: #0077b5;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-light:hover {
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 119, 181, 0.4);
+        }
+
+        .btn-light:hover::before {
+            left: 0;
+        }
+
+        .btn-light:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 10px rgba(0, 119, 181, 0.3);
+        }
+
+        .card-title {
+            color: #0077b5;
+            font-weight: 600;
+        }
+
+        .card {
+            margin-top: 20px;
+            height: 250px;
+            padding: 40px;
+            box-shadow: #343a40 1px 2px 10px 2px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .card:hover {
+            background-color: #0077b5;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .card:hover .card-title {
+            color: white;
+        }
+
+        #impressioncard {
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        #hastagimg {
+            height: 20%;
+            position: absolute;
+            margin-top: -95px;
+            margin-left: 60px;
+        }
+
+        #hastagimg:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+
+
+        footer {
+            background: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #0077b5;
+        }
+
+        .journey-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #0077b5;
+            color: white;
+        }
+
+        .flip-card {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: white;
+        }
+
+        .flip-card-front {
+            background-color: rgba(255, 255, 255, 0.1);
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .flip-card-back {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #0077b5;
+            transform: rotateY(180deg);
+            text-align: justify;
+            padding: 20px;
+            border: 1px solid rgba(0, 119, 181, 0.2);
+        }
+
+        #linlogo {
+            width: 20px;
+            height: 20px
+        }
+
+        @keyframes zoomAndFade {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.10;
+
+
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 2;
+                color: blue;
+            }
+        }
+    </style>
+
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module">
+
+    </script>
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="preloader-content">
+            <h1>SORNAKALA S</h1>
+            <dotlottie-player src="https://lottie.host/6014e72f-8df9-4951-a591-7e524ff1f150/Vy3lTmOrdZ.lottie"
+                background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
+
+        </div>
+    </div>
+
+    <div id="website" style="display: none;">
+        <!-- Header Section -->
+
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="main-content">
+            <div class="container">
+                <a class="navbar-brand" href="#">Sornakala <span>S</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#journey">Journey</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#highlights">Highlights</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#series">Series</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-primary text-white"
+                                href="https://www.linkedin.com/in/sornakala-s/" target="_blank">Visit profile</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container" style="margin-top: -55px;">
+                <img src="./images/connection.png" style="width: 30%; height: 20%" />
+                <h1>Explore My LinkedIn Journey</h1>
+                <p>Sharing coding tips, career insights, and development tricks with 100+ episodes.</p>
+                <a href="https://linkedin.com/in/your-profile" target="_blank" class="btn btn-light">Connect with me</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-5">
+            <div class="container">
+                <!-- Content Layout -->
+                <div class="row align-items-center">
+                    <!-- Left Side: GIF -->
+                    <div class="col-md-6 text-center">
+                        <dotlottie-player
+                            src="https://lottie.host/c1d88148-16c4-4499-8e45-3883d3004135/6Sb1lE7esD.lottie"
+                            background="transparent" speed="1" style="width: 100%; max-width: 300px;" loop autoplay>
+                        </dotlottie-player>
+                    </div>
+                    <!-- Right Side: Details -->
+                    <div class="col-md-6">
+                        <h2 class="fw-bold">Who Am I?</h2>
+                        <p class="text-justify fs-5">
+                            I’m <b>Sornakala S</b>, a web developer specializing in creating dynamic and user-centric
+                            solutions with expertise in the MERN stack. My passion lies in solving complex challenges,
+                            fostering collaboration, and driving impactful projects.
+                        </p>
+                        <p class="text-justify fs-5">
+                            I like connecting and communicating with people, sharing knowledge, and gaining insights.
+                            Continuously, I explore and share useful content and coding tips on my professional page.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="journey" class="journey-section">
+            <div class="container">
+                <h2 style="margin-bottom: 50px;">My LinkedIn journey</h2>
+                <div class="row gy-4">
+                    <!-- Starting as a Zero -->
+                    <div class="col-md-4">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    Started as a Zero
+                                </div>
+                                <div class="flip-card-back">
+                                    My LinkedIn journey began with curiosity and a blank profile. Unsure about
+                                    presenting myself,
+                                    I took the first step and explored how to connect with professionals.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Learning Phase -->
+                    <div class="col-md-4">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    The Learning Phase
+                                </div>
+                                <div class="flip-card-back">
+                                    I began sharing insights about coding, participating in discussions, and learning
+                                    from mentors.
+                                    Gradually, I found my voice and started building a meaningful network.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Current Role -->
+                    <div class="col-md-4">
+                        <div class="flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    What I’m Doing Now
+                                </div>
+                                <div class="flip-card-back">
+                                    I am dedicated to continuously enhancing my skills and sharing valuable insights
+                                    with my community through engaging posts and series.
+                                    I actively collaborate with like-minded professionals, fostering mutual growth and
+                                    learning. </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LinkedIn Highlights Section -->
+        <section id="highlights" class="py-5 bg-light" style=" min-height: 100vh;">
+            <div class="container text-center">
+                <h2 class="section-title">My Profile highlights </h2>
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">100+ Posts</h5>
+                                <p class="card-text">Sharing knowledge across various topics.</p>
+                            </div>
+                        </div>
+                        <img id="hastagimg" src="./images/newpost.gif" style="margin-left: 50px;" alt="nothing" />
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body" id="impressioncard">
+                                <h5 class="card-title">50K+ Impressions</h5>
+                                <p class="card-text">Grateful for the overwhelming support in the tech community</p>
+                            </div>
+                        </div>
+                        <img id="hastagimg" src="./images/media.gif" style="margin-top: -85px;" />
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">1.5K+ Post Engagement</h5>
+                                <p class="card-text">Reflecting the power of shared learning.</p>
+                            </div>
+                        </div>
+                        <img id="hastagimg" src="./images/postengage.gif" style="height: 18%; margin-top: -88px;" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section Divider -->
+        <div class="section-divider" style="height: 5px; background-color: #010e1c35; margin: 20px 0;"></div>
+
+        <!-- Series Section -->
+        <section id="series" class="series-section py-5">
+            <div class="container">
+                <!-- Ongoing Series Section -->
+                <div class="row align-items-center mb-5">
+                    <div class="col-md-6">
+                        <h2 class="section-title">Ongoing Series</h2>
+                        <p class="fs-5">
+                            Dive into my latest series "The Beginner Build Series!", the 10-project journey tailored for
+                            aspiring developers to master web design fundamentals.
+                        </p>
+                        <ul class="list-unstyled fs-5">
+                            <li><strong>Focus:</strong> Beginner-friendly projects with achievable milestones.
+                                Hands-on learning with practical coding tips and insights.</li>
+                            <li><a href="https://www.linkedin.com/in/sornakala-s/recent-activity/all/" target="_blank"
+                                    class="text-decoration-underline">Follow the series</a>.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="./images/goal.gif" alt="Ongoing Series" style="width: 250px; height: 250px;" loop
+                            autoplay />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section Divider -->
+        <div class="section-divider" style="height: 5px; background-color: #010e1c35; margin: 20px 0;"></div>
+        <!-- Series Section -->
+        <section id="series" class="series-section py-5">
+            <div class="container">
+                <!-- Completed Series Section -->
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center">
+                        <img src="./images/target.gif" alt="Completed Series" style="width: 250px; height: 250px;" loop
+                            autoplay />
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="section-title">Completed Series</h2>
+                        <p class="fs-5">
+                            The Successful completion of an impactful "100 Days of Coding Tips series", designed to
+                            enhance the skills of aspiring software engineers and tech enthusiasts alike.
+                        </p>
+                        <ul class="list-unstyled fs-5">
+                            <li><strong>Focus:</strong> Actionable coding tips, frameworks, and career insights.
+                                Empowered the tech community with 100 eisodes of valuable knowledge.</li>
+                            <li><a href="https://www.linkedin.com/in/sornakala-s/recent-activity/all/" target="_blank"
+                                    class="text-decoration-underline">Explore the episodes</a>.</li>
+                        </ul>
+                    </div>
+                    <Fieldset></Fieldset>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Section -->
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 Sornakala S | All Rights Reserved | </p>
+                <p>Connect with me on <a href="https://www.linkedin.com/in/sornakala-s/" target="_blank"><img
+                            id="linlogo" src="./images/linkedinlogo.png"> </a>
+                </p>
+            </div>
+        </footer>
+    </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                document.getElementById('preloader').style.display = 'none';
+                document.getElementById('website').style.display = 'block';
+            }, 2200); // 3 seconds
+        });
+    </script>
+</body>
+
+</html>
