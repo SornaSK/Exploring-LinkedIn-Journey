@@ -52,7 +52,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             animation: zoomAndFade 3s ease-in;
-            text-shadow: 2px 1px 2px rgba(53, 53, 53, 0.7);
+            text-shadow: 2px 1px 2px rgba(78, 78, 78, 0.7);
         }
 
         .preloader-content img {
@@ -60,6 +60,7 @@
             /* Adjust size as needed */
             height: auto;
         }
+
 
         nav {
             background: #343a40;
@@ -72,8 +73,6 @@
 
         .nav-link {
             color: white;
-            justify-content: space-between;
-
             transition: color 0.3s;
         }
 
@@ -81,10 +80,13 @@
             color: #0077b5;
         }
 
+        #navbarNav {
+            justify-content: flex-end;
+        }
+
         #navbarNav li a {
             padding: 5px 10px;
             font-size: 18px;
-            padding: 5px 10px;
         }
 
         .nav-link.btn.btn-primary {
@@ -97,6 +99,15 @@
 
         .nav-link.btn.btn-primary:active {
             transform: scale(0.95);
+        }
+
+        /* Custom toggle button styles for mobile view */
+        .navbar-toggler {
+            border-color: #0077b5;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%230077b5' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
 
         .hero {
@@ -271,6 +282,7 @@
             height: 20px
         }
 
+
         @keyframes zoomAndFade {
             0% {
                 transform: scale(1);
@@ -288,6 +300,26 @@
                 transform: scale(1);
                 opacity: 2;
                 color: blue;
+            }
+        }
+
+        .hashtag-image {
+            max-width: 80%;
+            /* Reduce size */
+            height: auto;
+            object-fit: contain;
+        }
+
+        .connection-image {
+            width: 50%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .connection-image {
+                width: 30%;
             }
         }
     </style>
@@ -313,11 +345,12 @@
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="main-content">
             <div class="container">
                 <a class="navbar-brand" href="#">Sornakala <span>S</span></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#journey">Journey</a></li>
                         <li class="nav-item"><a class="nav-link" href="#highlights">Highlights</a></li>
@@ -335,7 +368,8 @@
                 <img src="./images/connection.png" style="width: 30%; height: 20%" />
                 <h1>Explore My LinkedIn Journey</h1>
                 <p>Sharing coding tips, career insights, and development tricks with 100+ episodes.</p>
-                <a href="https://linkedin.com/in/your-profile" target="_blank" class="btn btn-light">Connect with me</a>
+                <a href="https://www.linkedin.com/in/sornakala-s/" target="_blank" class="btn btn-light">Connect with
+                    me</a>
             </div>
         </section>
 
@@ -353,7 +387,7 @@
                     </div>
                     <!-- Right Side: Details -->
                     <div class="col-md-6">
-                        <h2 class="fw-bold">Who Am I?</h2>
+
                         <p class="text-justify fs-5">
                             I’m <b>Sornakala S</b>, a web developer specializing in creating dynamic and user-centric
                             solutions with expertise in the MERN stack. My passion lies in solving complex challenges,
@@ -371,7 +405,7 @@
 
         <section id="journey" class="journey-section">
             <div class="container">
-                <h2 style="margin-bottom: 50px;">My LinkedIn journey</h2>
+                <h2 style="margin-bottom: 50px;"><b>My LinkedIn journey</b></h2>
                 <div class="row gy-4">
                     <!-- Starting as a Zero -->
                     <div class="col-md-4">
@@ -425,7 +459,7 @@
         <!-- LinkedIn Highlights Section -->
         <section id="highlights" class="py-5 bg-light" style=" min-height: 100vh;">
             <div class="container text-center">
-                <h2 class="section-title">My Profile highlights </h2>
+                <h2 class="section-title" style="color: #0077b5;"><b>My Profile highlights</b></h2>
                 <div class="row">
 
                     <div class="col-md-4">
@@ -467,7 +501,8 @@
                 <!-- Ongoing Series Section -->
                 <div class="row align-items-center mb-5">
                     <div class="col-md-6">
-                        <h2 class="section-title">Ongoing Series</h2>
+                        <h2 class="section-title" style="color: #0077b5;padding-bottom: 20px ;"><b>Ongoing Series</b>
+                        </h2>
                         <p class="fs-5">
                             Dive into my latest series "The Beginner Build Series!", the 10-project journey tailored for
                             aspiring developers to master web design fundamentals.
@@ -498,7 +533,8 @@
                             autoplay />
                     </div>
                     <div class="col-md-6">
-                        <h2 class="section-title">Completed Series</h2>
+                        <h2 class="section-title" style="color: #0077b5; padding-bottom: 20px ;"><b>Completed Series</b>
+                        </h2>
                         <p class="fs-5">
                             The Successful completion of an impactful "100 Days of Coding Tips series", designed to
                             enhance the skills of aspiring software engineers and tech enthusiasts alike.
@@ -526,6 +562,8 @@
     </div>
     </div>
     <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         window.addEventListener('load', function () {
