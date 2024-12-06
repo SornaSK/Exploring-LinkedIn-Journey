@@ -325,26 +325,40 @@
         font-size: 1rem;
     }
 
+    #highlights .row {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;  /* Add gap between cards */
+    }
+
+    #highlights .col-md-4 {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     #hastagimg {
         position: absolute;
-        top: 60px;
-        left: 80%;
-        width: 200px;
+        top: -60px;  /* Adjust vertical positioning */
+        left: 50%;  /* Center horizontally */
+        transform: translateX(-50%);
+        width: 100px;  /* Reduce size */
         height: auto;
+        z-index: 1;
         margin-left: 0 !important;
         margin-top: 0 !important;
     }
 
     .card {
-        height: auto;
+        margin-top: 40px;  /* Adjust to make room for the image */
+        height: auto;  /* Allow height to adjust to content */
         padding: 20px;
-        margin-top: 50px; /* Adjust to make room for the gif */
     }
-
    
     /* Series Sections */
     .series-section .row {
-        flex-direction: column-reverse;
         text-align: center;
     }
 
@@ -353,12 +367,6 @@
         margin-bottom: 20px;
     }
 
-    .series-section img {
-        max-width: 250px;
-        height: auto;
-    }
-
-    /* Ensure text is centered in mobile view */
     .series-section p,
     .series-section ul {
         text-align: center;
