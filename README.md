@@ -1,4 +1,4 @@
-# 📚 **Exploring My LinkedIn Journey Website** 🌐
+# 📚 **Exploring LinkedIn Journey Website** 🌐
 
 ## 🚀 **Project Overview**  
 Welcome to the "Exploring My LinkedIn Journey" website! This project is designed to showcase my journey on LinkedIn, highlighting my professional growth, ongoing series, completed series, and personal insights shared with the developer community. It provides an overview of my LinkedIn profile, a collection of my impactful posts, and detailed sections about my professional story.
